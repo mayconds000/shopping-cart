@@ -1,0 +1,21 @@
+extends ../layouts/layout
+
+block content
+  .row
+    .col-md-4.offset-md-4
+      h1 Sign Up
+      if hasErrors
+        div.alert.alert-danger(role="alert") 
+          each message in messages
+            p #{message}
+
+      form(action="/user/signup", method="post")
+        input(type="hidden", name="_csrf", value=csrfToken)
+        .form-group
+          label(for="email") Email
+          input.form-control(type="text", id="email", name="email")
+        .form-group
+          label(for="password") Password
+          input.form-control(type="password", id="password", name="password")
+        button.btn.btn-primary(type="submit") Sign Up
+    

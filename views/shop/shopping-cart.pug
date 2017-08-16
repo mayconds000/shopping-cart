@@ -1,0 +1,35 @@
+extends ../layouts/layout
+
+block content
+  br
+  if products
+    div.row
+      div.col-sm-6.col-md-6.offset-md-3.offset-sm-3
+        ul.list-group
+          each product in products
+            li.list-group-item.justify-content-between
+              div
+                strong #{product.item.title}
+                span.badge.badge-success.ml-1 $#{product.price}
+                div.btn-group
+                  button.btn.btn-primary.btn-sm.ml-1.dropdown-toggle(type="button", id="actions", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") Action
+                  ul.dropdown-menu(aria-labelledbyid="actions")
+                    li.dropdown-item
+                      a(href="") Reduce by 1
+                    li.dropdown-item
+                      a(href="") Remove All
+              span.badge.badge-default #{product.qty}
+         
+    div.row.mt-3
+      div.col-sm-6.col-md-6.offset-md-3.offset-sm-3
+        strong Total: #{totalPrice}
+    hr
+    div.row
+      div.col-sm-6.col-md-6.offset-md-3.offset-sm-3
+        a.btn.btn-success(href="/checkout") Checkout
+  else
+    div.row
+      div.col-sm-6.col-md-6.offset-md-3.offset-sm-3.text-center
+        h2 No items in card
+      
+
